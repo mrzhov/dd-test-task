@@ -22,7 +22,7 @@ public class DatesConverterTest {
                 "2022-01-26T09:30:00"
         ));
         DatesConverter datesConverter = new DatesConverter();
-        Assert.assertEquals("", datesConverter.convert(datesList));
+        Assert.assertEquals("0 0/30 8/9 25/26 1 TUE/WED", datesConverter.convert(datesList));
     }
 
     @Test
@@ -40,6 +40,6 @@ public class DatesConverterTest {
                 "2022-01-24T20:02:00"
         ));
         DatesConverter datesConverter = new DatesConverter();
-        Assert.assertEquals("", datesConverter.convert(datesList));
+        Assert.assertEquals("0 * 19/20 24 1 MON", datesConverter.convert(datesList));
     }
 }

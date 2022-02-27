@@ -6,15 +6,6 @@ import java.util.Date;
 public class CronUtil {
     private final Date mDate;
     private final Calendar mCal;
-    private final String[] DAY_OF_WEEK_NAMES = new String[]{
-            "SUN",
-            "MON",
-            "TUE",
-            "WED",
-            "THU",
-            "FRI",
-            "SAT"
-    };
 
     private Integer seconds;
     private Integer mins;
@@ -74,6 +65,5 @@ public class CronUtil {
         this.daysOfMonth = mCal.get(Calendar.DAY_OF_MONTH);
         this.month = mCal.get(Calendar.MONTH) + 1;
         this.daysOfWeek = mCal.get(Calendar.DAY_OF_WEEK) - 1;
-//        this.daysOfWeek = String.valueOf(DAY_OF_WEEK_NAMES[mCal.get(Calendar.DAY_OF_WEEK) - 1]);
     }
 }
