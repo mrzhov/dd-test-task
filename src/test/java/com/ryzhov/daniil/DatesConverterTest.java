@@ -22,7 +22,9 @@ public class DatesConverterTest {
                 "2022-01-26T09:30:00"
         ));
         DatesConverter datesConverter = new DatesConverter();
-        Assert.assertEquals("0 0/30 8/9 25/26 1 TUE/WED", datesConverter.convert(datesList));
+        String cron = datesConverter.convert(datesList);
+        Assert.assertEquals("0 0/30 8/9 25/26 1 TUE/WED", cron);
+        System.out.println("Test 1 result: " + cron);
     }
 
     @Test
@@ -40,6 +42,15 @@ public class DatesConverterTest {
                 "2022-01-24T20:02:00"
         ));
         DatesConverter datesConverter = new DatesConverter();
-        Assert.assertEquals("0 * 19/20 24 1 MON", datesConverter.convert(datesList));
+        String cron = datesConverter.convert(datesList);
+        Assert.assertEquals("0 * 19/20 24 1 MON", cron);
+        System.out.println("Test 2 result: " + cron);
+    }
+
+    @Test
+    public void testGetImplementationInfo() {
+        DatesConverter datesConverter = new DatesConverter();
+        String info = datesConverter.getImplementationInfo();
+        System.out.println(info);
     }
 }
