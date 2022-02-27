@@ -16,12 +16,12 @@ public class CronUtil {
             "SAT"
     };
 
-    private String seconds;
-    private String mins;
-    private String hours;
-    private String daysOfMonth;
-    private String month;
-    private String daysOfWeek;
+    private Integer seconds;
+    private Integer mins;
+    private Integer hours;
+    private Integer daysOfMonth;
+    private Integer month;
+    private Integer daysOfWeek;
 
     public CronUtil(Date pDate) {
         this.mDate = pDate;
@@ -29,50 +29,51 @@ public class CronUtil {
         this.generateCronExpression();
     }
 
-    private void generateCronExpression() {
-        mCal.setTime(mDate);
-
-        this.seconds = String.valueOf(mCal.get(Calendar.SECOND));
-        this.hours = String.valueOf(mCal.get(Calendar.HOUR_OF_DAY));
-        this.mins = String.valueOf(mCal.get(Calendar.MINUTE));
-        this.daysOfMonth = String.valueOf(mCal.get(Calendar.DAY_OF_MONTH));
-        this.month = new java.text.SimpleDateFormat("MM").format(mCal.getTime());
-        this.daysOfWeek = String.valueOf(DAY_OF_WEEK_NAMES[mCal.get(Calendar.DAY_OF_WEEK) - 1]);
-    }
-
-//    public String getCron() {
-//        return String.format(
-//                "%s %s %s %s %s %s",
-//                this.getSeconds(),
-//                this.getMins(),
-//                this.getHours(),
-//                this.getDaysOfMonth(),
-//                this.getMonths(),
-//                this.getDaysOfWeek()
-//        );
-//    }
-
-    public String getSeconds() {
+    public Integer getSeconds() {
         return seconds;
     }
 
-    public String getMins() {
+    public Integer getMins() {
         return mins;
     }
 
-    public String getDaysOfWeek() {
-        return daysOfWeek;
-    }
-
-    public String getHours() {
+    public Integer getHours() {
         return hours;
     }
 
-    public String getDaysOfMonth() {
+    public Integer getDaysOfMonth() {
         return daysOfMonth;
     }
 
-    public String getMonth() {
+    public Integer getMonth() {
         return month;
+    }
+
+    public Integer getDaysOfWeek() {
+        return daysOfWeek;
+    }
+
+    public Integer getValueByFieldName(String key) {
+        switch (key) {
+            case "seconds": return this.getSeconds();
+            case "mins": return this.getMins();
+            case "hours": return this.getHours();
+            case "daysOfMonth": return this.getDaysOfMonth();
+            case "month": return this.getMonth();
+            case "daysOfWeek": return this.getDaysOfWeek();
+        }
+        return null;
+    }
+
+    private void generateCronExpression() {
+        mCal.setTime(mDate);
+
+        this.seconds = mCal.get(Calendar.SECOND);
+        this.hours = mCal.get(Calendar.HOUR_OF_DAY);
+        this.mins = mCal.get(Calendar.MINUTE);
+        this.daysOfMonth = mCal.get(Calendar.DAY_OF_MONTH);
+        this.month = mCal.get(Calendar.MONTH) + 1;
+        this.daysOfWeek = mCal.get(Calendar.DAY_OF_WEEK) - 1;
+//        this.daysOfWeek = String.valueOf(DAY_OF_WEEK_NAMES[mCal.get(Calendar.DAY_OF_WEEK) - 1]);
     }
 }
